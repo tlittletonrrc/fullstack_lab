@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+
+interface Employee {
+  firstName: string;
+  lastName?: string;
+}
+
+interface Department {
+  name: string;
+  employees: Employee[];
+}
+
+const departments: Department[] = [
+  {
+    name: "Finance",
+    employees: [
+      { firstName: "Alice", lastName: "Jones" },
+      { firstName: "Mark" }
+    ]
+  },
+  {
+    name: "HR",
+    employees: [{ firstName: "Sarah", lastName: "Chen" }]
+  }
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const year = new Date().getFullYear();
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header>
+        <h1><img src="../1Capture.PNG" alt="Pixell River Logo"/>Pixell River Employee Directory</h1>
+
+        <p>Welcome to pixell river directory</p>
+      </header>
+      
+        {departments.map(dept => (
+          <section key={dept.name}>
+            <h2>{dept.name}</h2>
+            <ul>
+              {dept.employees.map((emp, idx) => (
+                <li key={idx}>
+                  {emp.firstName} {emp.lastName ?? ""}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+
+      <footer>
+        Copyright Pixell River Financial {year}.
+      </footer>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
