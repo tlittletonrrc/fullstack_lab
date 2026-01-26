@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css"
 import Information from "./components/information";
 import FormComponent from "./components/form";
+import Header from "./components/header/header";
+import Footer from "./components/footer/footer";
 
 export interface Employee {
     firstName: string;
@@ -40,13 +42,13 @@ function App() {
 
     return (
         <>
-            <div className="info">
-                <Information departments={departments} />
-            </div>
+            <Header></Header>
 
-            <div className="form-container">
-                <FormComponent departments={departments} setDepartments={setDepartments} />
-            </div>
+            <Information departments={departments} />
+            
+            <FormComponent departments={departments} setDepartments={setDepartments} />
+
+            <Footer></Footer>
         </>
     );
 }
