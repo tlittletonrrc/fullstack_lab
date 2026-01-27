@@ -1,58 +1,57 @@
-import "./App.css";
+import { useState } from "react";
+import "./App.css"
+import Information from "./components/information";
+import FormComponent from "./components/form";
+import Header from "./components/header/header";
+import Footer from "./components/footer/footer";
 
-interface Employee {
-  firstName: string;
-  lastName?: string;
+export interface Employee {
+    firstName: string;
 }
 
-interface Department {
-  name: string;
-  employees: Employee[];
+export interface Department {
+    name: string;
+    employees: Employee[];
 }
 
-const departments: Department[] = [
-  {
-    name: "Finance",
-    employees: [
-      { firstName: "Alice", lastName: "Jones" },
-      { firstName: "Mark" }
-    ]
-  },
-  {
-    name: "HR",
-    employees: [{ firstName: "Sarah", lastName: "Chen" }]
-  }
+const initialDepartments: Department[] = [
+    {
+        name: "Finance",
+        employees: [
+            { firstName: "Alice" },
+            { firstName: "Mark" }
+        ]
+    },
+    {
+        name: "HR",
+        employees: [
+            { firstName: "Sarah" }
+        ]
+    },
+    {
+        name: "IT",
+        employees: [
+            { firstName: "Joe" }
+        ]
+    }
 ];
 
+
 function App() {
-  const year = new Date().getFullYear();
+    const [departments, setDepartments] = useState<Department[]>(initialDepartments);
 
-  return (
-    <>
-      <header>
-        <h1><img src="../1Capture.PNG" alt="Pixell River Logo"/>Pixell River Employee Directory</h1>
+    return (
+        <>
+            <Header></Header>
 
-        <p>Welcome to pixell river directory</p>
-      </header>
-      
-        {departments.map(dept => (
-          <section key={dept.name}>
-            <h2>{dept.name}</h2>
-            <ul>
-              {dept.employees.map((emp, idx) => (
-                <li key={idx}>
-                  {emp.firstName} {emp.lastName ?? ""}
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+            <Information departments={departments} />
+            
+            <FormComponent departments={departments} setDepartments={setDepartments} />
 
-      <footer>
-        Copyright Pixell River Financial {year}.
-      </footer>
-    </>
-  );
+            <Footer></Footer>
+        </>
+    );
+
 }
 
 export default App;
