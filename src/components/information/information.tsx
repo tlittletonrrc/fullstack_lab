@@ -1,4 +1,4 @@
-import type { Department } from "../App";
+import type { Department } from "../../Pages/EmployeesPage";
 
 function Information({ departments }: { departments: Department[] }) {
     return (

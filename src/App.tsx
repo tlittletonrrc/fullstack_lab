@@ -1,54 +1,22 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css"
-import Information from "./components/information";
-import FormComponent from "./components/form";
-import Header from "./components/header/header";
-import Footer from "./components/footer/footer";
-
-export interface Employee {
-    firstName: string;
-}
-
-export interface Department {
-    name: string;
-    employees: Employee[];
-}
-
-const initialDepartments: Department[] = [
-    {
-        name: "Finance",
-        employees: [
-            { firstName: "Alice" },
-            { firstName: "Mark" }
-        ]
-    },
-    {
-        name: "HR",
-        employees: [
-            { firstName: "Sarah" }
-        ]
-    },
-    {
-        name: "IT",
-        employees: [
-            { firstName: "Joe" }
-        ]
-    }
-];
+import Layout from "../src/Layout/Layout";
+import EmployeesPage  from "./Pages/EmployeesPage"
+import OrganizationPage from "./Pages/OrganizationPage";
 
 
 function App() {
-    const [departments, setDepartments] = useState<Department[]>(initialDepartments);
 
     return (
         <>
-            <Header></Header>
-
-            <Information departments={departments} />
-            
-            <FormComponent departments={departments} setDepartments={setDepartments} />
-
-            <Footer></Footer>
+        <Router>
+            <Routes>
+                <Route element={<Layout />}>
+                    <Route path="/employees" element={<EmployeesPage />} />
+                    <Route path="/organization" element={<OrganizationPage />} />
+                </Route>
+            </Routes>
+        </Router>
         </>
     );
 
