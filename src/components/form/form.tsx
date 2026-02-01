@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Department } from "../../page/EmployeesPage";
+import type { Department } from "../../Pages/EmployeesPage";
 
 function FormComponent({
     departments,
