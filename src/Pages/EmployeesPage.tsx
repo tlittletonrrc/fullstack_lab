@@ -36,20 +36,16 @@ const initialDepartments: Department[] = [
 ];
 
 
-function FormPage() {
+function EmployeesPage () {
     const [departments, setDepartments] = useState<Department[]>(initialDepartments);
 
     return (
         <>
-            <Header></Header>
-
             <Information departments={departments} />
             
             <FormComponent departments={departments} setDepartments={setDepartments} />
-
-            <Footer></Footer>
         </>
     );
 }
 
-export default FormPage;
+export default EmployeesPage ;

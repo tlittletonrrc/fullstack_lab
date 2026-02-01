@@ -1,17 +1,22 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css"
-import Information from "./components/information/information";
-import FormComponent from "./components/form/form";
-import Header from "./components/header/header";
-import Footer from "./components/footer/footer";
-import FormPage from "./page/formPage";
+import Layout from "../src/Layout/Layout";
+import EmployeesPage  from "./Pages/EmployeesPage"
+import OrganizationPage from "./Pages/OrganizationPage";
 
 
 function App() {
 
     return (
         <>
-            <FormPage />
+        <Router>
+            <Routes>
+                <Route element={<Layout />}>
+                    <Route path="/employees" element={<EmployeesPage />} />
+                    <Route path="/organization" element={<OrganizationPage />} />
+                </Route>
+            </Routes>
+        </Router>
         </>
     );
 }
